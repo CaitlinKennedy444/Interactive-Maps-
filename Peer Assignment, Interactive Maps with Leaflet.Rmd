@@ -1,0 +1,46 @@
+---
+title: "Peer Assignment, Interactive maps with leaflet"
+author: "Caitlin Kennedy"
+date: "May 30, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##Peer project--Customizing icons and labels for more than one point
+```{r, eval=FALSE, echo=TRUE}
+caitsIcon <- makeIcon(
+  iconUrl = "http://3.bp.blogspot.com/-2CFfIfzE6AA/T3hqqmjhYPI/AAAAAAAAAYs/vVItLgnZxYo/s1600/google-map-point.png",
+  iconWidth = 31*215/230, iconHeight = 31,
+  iconAnchorX = 31*215/230/2, iconAnchorY= 16
+)
+
+caitsLatLong <- data.frame(
+  lat = c(40.57319, 33.7488889, 44.899392, 36.2131, 43.1625, 34.0005556, 40.714623),
+  lng = c(-74.89706, -84.3880556, -109.15098, -86.7265, -70.6463888889, -81.035, -74.006605))
+
+caitsLatLong %>%
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(icon=caitsIcon)
+```
+
+```{r, eval=FALSE, echo=TRUE}
+caitsSites <- c(
+  "<a href='http://www.experiencehunterdon.org/'>Hometown</a>",
+  "<a href='http://www.emory.edu/home/index.html'>Emory University&CDC</a>",
+  "<a href='http://www.travelwyoming.com/'>Internship</a>",
+  "<a href='http://www.visitmusiccity.com/'>Best Friends Hometown</a>",
+  "<a href='https://visitmaine.com/places-to-go/the-maine-beaches/york/'>vacation spot</a>",
+  "<a href='http://discoversouthcarolina.com/'>Vacation Spot</a>",
+  "<a href='https://www.iloveny.com/'>The City</a>"
+)
+
+caitsLatLong %>%
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(icon=caitsIcon, popup=caitsSites)
+
+```
